@@ -80,9 +80,9 @@ function App() {
         }}
         placeholder="✍️Enter Todo"
       />
-      <Button className="btn m-3" onClick={handleClick}>
+      <Button className="btn btn-primary m-3" onClick={handleClick}>
         {isEdit ? (
-          <>
+          <> 
           <i className="fa-solid fa-pen-to-square icon"></i>
           </>
         ) : (
