@@ -13,7 +13,7 @@ function TodoItem({ item, index, handleDelete, handleEdit, handleMarkDone }) {
         onChange={() => handleMarkDone(index)}
       />
       <span style={{ textDecoration: isDone ? "line-through" : "none" }}>{item.name}</span>
-      <Button className="btn btn-primary m-3 float-right" onClick={() => handleDelete(index)} disabled={isDone}>
+      <Button className="btn btn-primary m-3" onClick={() => handleDelete(index)} disabled={isDone}>
          <i className="fa-solid fa-trash-can icon"></i>
       </Button>
       <Button className="btn btn-primary m-3" onClick={() => handleEdit(index)}  disabled={isDone}>
@@ -25,5 +25,4 @@ function TodoItem({ item, index, handleDelete, handleEdit, handleMarkDone }) {
     </div>
   );
 }
-
 export default TodoItem;

@@ -15,6 +15,13 @@ function App() {
 
   const handleClick = (params,x) => {
 
+      // Check if input is empty
+      if (!input.trim()) {
+        setShowMessage(true);
+        return; // Exit the function early if input is empty
+      } else {
+        setShowMessage(false);
+      }
     if(isEdit){
     console.log("index of editable todo",editIndex);
     const temp = [...todos];
@@ -64,19 +71,12 @@ function App() {
 
   return (
     <div className="App">
-      <img className="mt-5" src={require('./images/img1.png')}  alt='todo app logo' />
+      <img className="img mt-5" src={require('./images/img1.png')}  alt='todo app logo' />
      <h1>Todo List App</h1>
       <Input
         value={input}
         onChange={(event) => {
           setInput(event.target.value);
-          // if (input === "") {
-              // Check if input (not setTodos) is an empty string
-    // if (event.target.value === '') {
-      if (event.target.value.trim() === '') {
-            setShowMessage(true);
-          }
-          setShowMessage(false);
         }}
         placeholder="✍️Enter Todo"
       />
@@ -91,7 +91,7 @@ function App() {
           </>
         )}
       </Button>
-      {showMessage && <p>Please enter a todo item.</p>}
+      {showMessage && <p className="emptyMessage">Please enter a todo item.</p>}
       <hr />
       <TodoList
         todos={todos}
