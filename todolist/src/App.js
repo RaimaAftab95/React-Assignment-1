@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect  } from "react";
 import TodoList from "./TodoList";
 import Input from "./Input";
 import Button from "./Button";
@@ -13,8 +13,8 @@ function App() {
   const [showMessage, setShowMessage] = useState(false);
 
 
-  const handleClick = (params,x) => {
-
+  const handleClick = (params,x,event) => {
+    const temp = [...todos];
       // Check if input is empty
       if (!input.trim()) {
         setShowMessage(true);
@@ -24,18 +24,23 @@ function App() {
       }
     if(isEdit){
     console.log("index of editable todo",editIndex);
-    const temp = [...todos];
+    //const temp = [...todos];
     temp[editIndex]={name:input, markDone:false};
-    setTodos(temp);
-    setInput("");
+    //setTodos(temp);
+    //setInput("");
     setIsEdit(false);
     setEditIndex(-1); 
     }
     else{
       console.log("todos",input);
-      setTodos([...todos,{name:input, markDone:false}]);
-      setInput("");
+      temp.push({name:input, markDone:false});
+      //setTodos([...todos,{name:input, markDone:false}]);
+      //setInput("");
     }
+
+setTodos(temp);
+ // clearing input todo field on click of add todo
+ setInput("");
   };
 
   const handleMarkDone = (index) => {
@@ -67,7 +72,20 @@ function App() {
 
   const removeAllTodos = () => {
     setTodos([]);
+    localStorage.removeItem("allTodos"); // Clear local storage
   };
+
+// hook with arrow fun and dependencies to store list
+useEffect( ()=> {
+  console.log("todos",todos);
+  if(todos.length > 0)
+  localStorage.setItem("allTodos", JSON.stringify(todos));
+}, [todos]);
+
+useEffect( ()=> {
+  console.log("useEffect",localStorage.getItem("allTodos"));
+  setTodos(JSON.parse(localStorage.getItem("allTodos")) || []);
+},[]);
 
   return (
     <div className="App">
@@ -77,6 +95,11 @@ function App() {
         value={input}
         onChange={(event) => {
           setInput(event.target.value);
+        }}
+        onKeyDown={(event) => {
+          if (event.keyCode === 13) {
+            handleClick();
+          }
         }}
         placeholder="✍️Enter Todo"
       />
