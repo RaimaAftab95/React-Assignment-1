@@ -7,24 +7,22 @@ function TodoItem({ item, index, handleDelete, handleEdit, handleMarkDone }) {
   const isDone = item.markDone;
   const disableButtons = markDone ? true : false;
   return (
-    <div>
-    <input
-        type="checkbox"
-        checked={isDone}
-        onChange={() => handleMarkDone(index)}
-      />
-      <span style={{ textDecoration: isDone ? "line-through" : "none" }}>{item.name}</span>
-      <Button className={`btn btn-danger m-2 ${disableButtons ? 'disabled' : ''}`} disabled={disableButtons} onClick={() => handleDelete(index)}>
-         <i className="fa-solid fa-trash-can icon"></i>
-      </Button>
-      <Button className={`btn btn-primary m-2 ${disableButtons ? 'disabled' : ''}`} disabled={disableButtons} onClick={() => handleEdit(index)}  >
-        <i className="fa-solid fa-pen-to-square icon"></i>
-      </Button>
-      {/* <Button className="btn btn-primary m-3" onClick={() => handleMarkDone(index)}>
-        Mark As Done
-      </Button> */}
-    </div>
+    <div className="col-12">
+    <div className="d-flex align-items-center list-item">
+
+  <input class="form-check-input completed" type="checkbox" id="inlineCheckbox1" value="option1" checked={isDone}
+  onChange={() => handleMarkDone(index)}/>
+  <span className="p-2" style={{ textDecoration: isDone ? "line-through" : "none" }}>{item.name}</span>
+<div className="btn-container">
+  <Button className={`btn btn-color ${disableButtons ? 'disabled' : ''}`} disabled={disableButtons} onClick={() => handleDelete(index)}>
+    <i className="fa-solid fa-trash-can icon"></i>
+  </Button>
+  <Button className={`btn btn-color ${disableButtons ? 'disabled' : ''}`} disabled={disableButtons} onClick={() => handleEdit(index)}  >
+  <i className="fa-solid fa-pen-to-square icon"></i>
+  </Button>
+</div>
+</div>
+</div>
   );
 }
 export default TodoItem;
-// disabled={isDone}

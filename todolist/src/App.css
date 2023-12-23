@@ -1,31 +1,110 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Skranji&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital@1&family=Satisfy&display=swap');
 .App {
   text-align: center;
 }
+
 *{
   margin: 0;
   padding: 0;
+  font-family: 'Jost', sans-serif;
+  font-family: 'Satisfy', cursive;
 }
 body{
-  /* background-color: #333; */
-  background-color:rgb(221, 193, 246)!important;
+  background-color: #593e84!important;
+  color: #fff!important;
+  text-align: center!important;
+  padding: 20px;
 }
 
+.center-container {
+  background-color: #a27fe0;
+  border-radius: 15px;
+  padding: 50px;
+  box-shadow: 0px 10px 20px rgba(27, 149, 230, 0.3);
+}
+.input-container{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+/* input todo item box */
+.input-box-todo{
+  margin-left: 10px;
+  width: 90%;
+  height: 40px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  border-radius: 10px;
+  border:2px solid rgb(19, 2, 94);
+  /* background-color: rgba(27, 149, 230, 0.3); */
+  padding-left: 10px;  
+  box-shadow: 0px 10px 20px rgba(27, 149, 230, 0.3);
+  outline: none;
+  font-size: large;
+}
+
+.list-item{
+  border:2px solid rgb(19, 2, 94);
+  color:rgb(19, 2, 94);
+  background-color:#72B1BC;
+  font-size: large;
+  font-weight: 500;
+  box-shadow: none;
+  padding:15px;
+  border-radius: 5px; 
+  width: 100%;
+  height: 50px;
+  position: relative;
+  margin:10px;
+}
 .icon{
-  color:blue;
-}
-
-.icon:hover{
-  color: red;
-}
+  background: transparent;
+  border: none;
+  box-shadow: none;
+ }
 .img
-{ width: 300px;
-  height:300px;
+{ width: 100px;
+  height:100px;
 }
-
 .completed {
   text-decoration: line-through;
+  color: blue;
+  background-color: rgb(18, 176, 44)!important ;
 }
 .emptyMessage
 {
   color: red;
+}
+.btn-container {
+   display: flex;
+   margin-left: auto;
+}
+
+.btn-container button {
+  margin-left: 5px;
+}
+.btn-color
+{
+  background-color: #7c4dcc !important;
+  color: #fff !important;
+  border:1px solid rgb(19, 2, 94) !important;
+}
+.btn-color:hover
+{
+  background-color: #593e84 !important;
+}
+.icon{
+  margin: 4px;
+  font-size: large;
+  cursor: pointer;
+  transition: 0.1s; 
+  color: rgb(18, 176, 44);  
+}
+.icon:hover{
+  transform: scale(1.4); 
+  color: red; 
+}
+.line {
+  height:3px;
+  background-color:rgb(19, 2, 94)!important;
 }

@@ -11,8 +11,18 @@ function App() {
   const [isEdit, setIsEdit] = useState(false);
   const [editIndex, setEditIndex] = useState(-1);
   const [showMessage, setShowMessage] = useState(false);
+  const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
+  useEffect(() => {
+    // Update currentDateTime every second
+    const intervalId = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000);
 
+    return () => {
+      clearInterval(intervalId); // Cleanup interval on component unmount
+    };
+  }, []);
   const handleClick = (params,x,event) => {
     const temp = [...todos];
       // Check if input is empty
@@ -24,23 +34,16 @@ function App() {
       }
     if(isEdit){
     console.log("index of editable todo",editIndex);
-    //const temp = [...todos];
     temp[editIndex]={name:input, markDone:false};
-    //setTodos(temp);
-    //setInput("");
     setIsEdit(false);
     setEditIndex(-1); 
     }
     else{
       console.log("todos",input);
       temp.push({name:input, markDone:false});
-      //setTodos([...todos,{name:input, markDone:false}]);
-      //setInput("");
     }
-
 setTodos(temp);
- // clearing input todo field on click of add todo
- setInput("");
+setInput("");
   };
 
   const handleMarkDone = (index) => {
@@ -88,10 +91,14 @@ useEffect( ()=> {
 },[]);
 
   return (
-    <div className="App">
-      <img className="img mt-5" src={require('./images/img1.png')}  alt='todo app logo' />
-     <h1>Todo List App</h1>
-      <Input
+    <div className="App container d-flex justify-content-center align items-center">
+      <div className="center-container">
+      <img className="img mt-5" src={require('./images/img2.png')}  alt='todo app logo' />
+     <h1 className="mt-5">Todo List App</h1>
+    <p>{currentDateTime.toDateString()}</p>
+    <p>{currentDateTime.toLocaleTimeString()}</p>
+     <hr className="line"/>
+      <Input 
         value={input}
         onChange={(event) => {
           setInput(event.target.value);
@@ -103,7 +110,7 @@ useEffect( ()=> {
         }}
         placeholder="✍️Enter Todo"
       />
-      <Button className="btn btn-primary m-3" onClick={handleClick}>
+      <Button className="btn btn-color m-3" onClick={handleClick}>
         {isEdit ? (
           <> 
           <i className="fa-solid fa-pen-to-square icon"></i>
@@ -115,7 +122,7 @@ useEffect( ()=> {
         )}
       </Button>
       {showMessage && <p className="emptyMessage">Please enter a todo item.</p>}
-      <hr />
+    
       <TodoList
         todos={todos}
         handleDelete={handleDelete}
@@ -123,6 +130,7 @@ useEffect( ()=> {
         handleMarkDone={handleMarkDone}
         removeAllTodos={removeAllTodos}
       />
+    </div>
     </div>
   );
 }

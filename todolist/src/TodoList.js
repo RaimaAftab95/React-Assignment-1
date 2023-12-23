@@ -6,6 +6,7 @@ function TodoList({ todos, handleDelete, handleEdit, handleMarkDone, removeAllTo
   return (
     <div>
       {todos.map((item, index) => (
+      <div>
         <TodoItem
           key={index}
           item={item}
@@ -14,9 +15,10 @@ function TodoList({ todos, handleDelete, handleEdit, handleMarkDone, removeAllTo
           handleEdit={handleEdit}
           handleMarkDone={handleMarkDone}
         />
+        </div>
       ))}
       {todos.length > 0 && (
-        <Button className="btn btn-danger mt-3" onClick={removeAllTodos}>
+        <Button className="btn btn-color mt-3" onClick={removeAllTodos}>
           Remove all <i className="fa-solid fa-trash icon"></i>
         </Button>
       )}
