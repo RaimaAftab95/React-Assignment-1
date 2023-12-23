@@ -1,7 +1,7 @@
 # Project Structure
 
 The project follows a simple component-based architecture:
-
+```
 src
 |-- components
 | |-- App.js
@@ -12,7 +12,7 @@ src
 |-- App.css
 |-- index.js
 |-- ...
-
+```
 
 ## Components
 
